@@ -177,13 +177,6 @@ function exitApp() {
 }
  */
 
- function exitApp() {
-     var r = confirm("¿Quieres cerrar la aplicación?");
-     if (r == true) {
-         navigator.app.exitApp();
-     }
- }
-
 
 /*************************** EXIT APP - END ***************************/
 
