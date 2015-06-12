@@ -60,8 +60,10 @@ var ratioH = aspectRatio.substring(res+1);
 
 
 /* tamaño inicial pedal */
-var iniX = document.getElementById('pedal').height;
-var iniY = document.getElementById('pedal').width;
+//var iniX = document.getElementById('pedal').height;
+var widthIni = document.getElementById('pedal').width;
+var widthFin = document.getElementById('pedal').width;
+
 var w = window.innerWidth - 10;
 var h = window.innerHeight - 10;
 
@@ -77,10 +79,11 @@ var btnOfOff_Y = document.getElementById('btnExit').height;
 
 var sWidth = w ; //screen.width;
 var sHeight = h; //screen.height;
-document.getElementById('btnExit').height = btnOfOff_Y * (ratioW/ratioH);
+document.getElementById('btnExit').height = sHeight - (sHeight / 2); //btnOfOff_Y * (ratioW/ratioH);
 document.getElementById('btnExit').width = sWidth;
 
 /* Posicionar boton On/off */
+//var topbtnExit = sHeight - document.getElementById('btnExit').height;
 var topbtnExit = sHeight - document.getElementById('btnExit').height;
 document.getElementById('divOnOff').style.top = topbtnExit + "px";
 
@@ -118,8 +121,7 @@ document.getElementById('btnExit').addEventListener('touchend',function(event) {
     startTime = null;
     endTime = null;
 
-    alert(touchTime);
-    if (touchTime > 3) {
+    if (touchTime > 350) {
         touchTime = null;
         var r = confirm("Exit application?");
         if (r == true) {
