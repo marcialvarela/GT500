@@ -103,7 +103,7 @@ document.getElementById('note').width = sWidth;
 
 
 /* Inicializr variables globales */
-var onOFF = '0';
+var onOFF_v = '0';
 var startTime, endTime, touchTime;
 
 
@@ -127,21 +127,20 @@ var startTime, endTime, touchTime;
 /**********************************************************************/
 /*************************** ON OFF - INI *****************************/
 function onOff() {
-    switch(onOFF) {
+
+
+    switch(onOFF_v) {
         case '0':
+            onOFF_v = '1';
             document.getElementById('divNote').style.visibility = 'visible';
-            document.getElementById('divPitchL').style.visibility = 'visible';
-            document.getElementById('divPitchR').style.visibility = 'visible';
-            onOFF = '1';
-            captureAudio();
+            //captureAudio();
             break;
         case '1':
+            onOFF_v = '0';
             document.getElementById('divNote').style.visibility = 'hidden';
-            document.getElementById('divPitchL').style.visibility = 'hidden';
-            document.getElementById('divPitchR').style.visibility = 'hidden';
-            onOFF = '0';
             break;
     }
+
 }
 /*************************** ON OFF - INI ***************************/
 
