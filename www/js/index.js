@@ -48,9 +48,6 @@ var app = {
     }
 };
 
-//document.getElementById("btnExit").addEventListener('touchstart', touchstart);
-//document.getElementById("btnExit").addEventListener('touchend', touchend);
-
 /*********************************************************************************/
 /* auto escala el pedal al tamaño del movil . SOLO ENVERTICAL*/
 var aspectRatio = calculate_ratio();
@@ -90,6 +87,21 @@ document.getElementById('divOnOff').style.top = topbtnExit + "px";
 /*********************************************************************************/
 
 
+
+/**********************************************************************/
+/******************* T A M A N Y O   N O T A  *************************/
+
+/* Tamanyo boton On/off */
+var btnNota_X = document.getElementById('note').width;
+var btnnota_Y = document.getElementById('note').height;
+document.getElementById('note').height = sHeight - (sHeight / 2); //btnOfOff_Y * (ratioW/ratioH);
+document.getElementById('note').width = sWidth;
+
+
+/**********************************************************************/
+
+
+
 /* Inicializr variables globales */
 var onOFF = '0';
 var startTime, endTime, touchTime;
@@ -104,6 +116,34 @@ var startTime, endTime, touchTime;
 
 
 
+
+
+
+
+
+
+
+
+/**********************************************************************/
+/*************************** ON OFF - INI *****************************/
+function onOff() {
+    switch(onOFF) {
+        case '0':
+            document.getElementById('divNote').style.visibility = 'visible';
+            document.getElementById('divPitchL').style.visibility = 'visible';
+            document.getElementById('divPitchR').style.visibility = 'visible';
+            onOFF = '1';
+            captureAudio();
+            break;
+        case '1':
+            document.getElementById('divNote').style.visibility = 'hidden';
+            document.getElementById('divPitchL').style.visibility = 'hidden';
+            document.getElementById('divPitchR').style.visibility = 'hidden';
+            onOFF = '0';
+            break;
+    }
+}
+/*************************** ON OFF - INI ***************************/
 
 /**********************************************************************/
 /*************************** EXIT APP - INI ***************************/
@@ -133,72 +173,7 @@ document.getElementById('btnExit').addEventListener('touchend',function(event) {
     }
 
 },false);
-
-/*
-// Long Touch to exit App
-var touchduration = 300;
-var timerInterval = 0;
-
-function timer(interval){
-    interval--;
-    if (interval >= 0) {
-        timerInterval = setTimeout(function() {
-            timer(interval);
-        });
-    }
-    else    {
-        taphold();
-    }
-}
-
-function touchstart() {
-    alert('touchstart');
-    timer(touchduration);
-}
-
-function touchend() {
-    alert('touchend');
-    clearTimeout(timerInterval);
-}
-
-function taphold(){
-
-    var r = confirm("¿Quieres cerrar la aplicación?");
-    if (r == true) {
-        navigator.app.exitApp();
-    }
-}
-
-function exitApp() {
-
-    if(timerInterval < touchduration){
-        onOff();
-    }
-}
- */
-
-
 /*************************** EXIT APP - END ***************************/
-
-/*************************** ON OFF - INI ***************************/
-function onOff() {
-    switch(onOFF) {
-        case '0':
-            document.getElementById('divNote').style.visibility = 'visible';
-            document.getElementById('divPitchL').style.visibility = 'visible';
-            document.getElementById('divPitchR').style.visibility = 'visible';
-            onOFF = '1';
-            captureAudio();
-            break;
-        case '1':
-            document.getElementById('divNote').style.visibility = 'hidden';
-            document.getElementById('divPitchL').style.visibility = 'hidden';
-            document.getElementById('divPitchR').style.visibility = 'hidden';
-            onOFF = '0';
-            break;
-    }
-}
-/*************************** ON OFF - INI ***************************/
 
 
 /***************************************************************************/
