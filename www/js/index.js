@@ -131,7 +131,8 @@ function onOff() {
 
     switch(onOFF_v) {
         case '0':
-            onOFF_v = '1';
+            onOFF_v = '2';
+            document.getElementById('note').src="img/A.png";
             document.getElementById('divNote').style.visibility = 'visible';
             //captureAudio();
             break;
@@ -139,6 +140,12 @@ function onOff() {
             onOFF_v = '0';
             document.getElementById('divNote').style.visibility = 'hidden';
             break;
+
+        case '2':
+            onOFF_v = '0';
+            document.getElementById('note').src="img/A1.png";
+            break;
+
     }
 
 }
