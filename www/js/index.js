@@ -166,6 +166,15 @@ function onOff() {
 
 /**********************************************************************/
 /*************************** EXIT APP - INI ***************************/
+/* ------------- S L E E P  -------------*/
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+        if ((new Date().getTime() - start) > milliseconds){
+            break;
+        }
+    }
+}
 /* ------------- TOUCH START -------------*/
 document.getElementById('btnExit').addEventListener('touchstart',function(event) {
     startTime = new Date().getTime();
@@ -184,6 +193,18 @@ document.getElementById('btnExit').addEventListener('touchend',function(event) {
         touchTime = null;
         var r = confirm("Exit application?");
         if (r == true) {
+            document.getElementById('pitchL').style.visibility = 'hidden';
+            document.getElementById('pitchR').style.visibility = 'hidden';
+            document.getElementById('divNote').style.src = 'img/off.png';
+            document.getElementById('divNote').style.visibility = 'visible';
+            sleep(1000);
+            document.getElementById('divNote').style.visibility = 'hidden';
+            sleep(1000);
+            document.getElementById('divNote').style.visibility = 'visible';
+            sleep(1000);
+            document.getElementById('divNote').style.visibility = 'hidden';
+            sleep(1000);
+            document.getElementById('divNote').style.visibility = 'visible';
             navigator.app.exitApp();
         }
     }

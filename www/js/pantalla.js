@@ -26,3 +26,4 @@ function calculate_ratio()
     rH = h/r;
     return (rW + ":" + rH);
 }
+
