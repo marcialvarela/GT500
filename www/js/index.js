@@ -135,6 +135,7 @@ var startTime, endTime, touchTime;
 /*************************** ON OFF - INI *****************************/
 function onOff() {
 
+    alert('onOff');
     window.addEventListener("audiofrequency", onAudiofrequency, false);
 
     function onAudiofrequency(e) {
