@@ -193,19 +193,8 @@ document.getElementById('btnExit').addEventListener('touchend',function(event) {
         touchTime = null;
         var r = confirm("Exit application?");
         if (r == true) {
-            document.getElementById('pitchL').style.visibility = 'hidden';
-            document.getElementById('pitchR').style.visibility = 'hidden';
-            document.getElementById('divNote').style.src = 'img/off.png';
-            document.getElementById('divNote').style.visibility = 'visible';
-            sleep(1000);
-            document.getElementById('divNote').style.visibility = 'hidden';
-            sleep(1000);
-            document.getElementById('divNote').style.visibility = 'visible';
-            sleep(1000);
-            document.getElementById('divNote').style.visibility = 'hidden';
-            sleep(1000);
-            document.getElementById('divNote').style.visibility = 'visible';
-            navigator.app.exitApp();
+            setInterval('parpadeo()', 500);
+            //navigator.app.exitApp();
         }
     }
     else{
@@ -213,6 +202,33 @@ document.getElementById('btnExit').addEventListener('touchend',function(event) {
     }
 
 },false);
+
+
+function p_off(){
+    document.getElementById('note').style.visibility = 'hidden';
+    document.getElementById('note').src = 'img/off.png';
+    document.getElementById('note').style.visibility = 'visible';
+
+    setInterval('parpadeo()', 500);
+}
+
+var iInterval = 0;
+function parpadeo() {
+    if(document.getElementById('note').style.visibility == 'visible'){
+        document.getElementById('note').style.visibility='hidden';
+    }
+    else{
+        document.getElementById('note').style.visibility='visible';
+    }
+
+    iInterval++;
+    if (iInterval == 4){
+        navigator.app.exitApp();
+    }
+
+}
+
+
 /*************************** EXIT APP - END ***************************/
 
 
