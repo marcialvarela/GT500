@@ -80,7 +80,6 @@ document.getElementById('btnExit').height = sHeight - (sHeight / 2); //btnOfOff_
 document.getElementById('btnExit').width = sWidth;
 
 /* Posicionar boton On/off */
-//var topbtnExit = sHeight - document.getElementById('btnExit').height;
 var topbtnExit = sHeight - document.getElementById('btnExit').height;
 document.getElementById('divOnOff').style.top = topbtnExit + "px";
 
@@ -92,11 +91,19 @@ document.getElementById('divOnOff').style.top = topbtnExit + "px";
 /******************* T A M A N Y O   N O T A  *************************/
 
 /* Tamanyo boton On/off */
-var btnNota_X = document.getElementById('note').width;
-var btnnota_Y = document.getElementById('note').height;
 document.getElementById('note').height = sHeight - (sHeight / 2); //btnOfOff_Y * (ratioW/ratioH);
 document.getElementById('note').width = sWidth;
+/**********************************************************************/
 
+
+/**********************************************************************/
+/******************* T A M A N Y O   P I T C H   **********************/
+
+/* Tamanyo boton On/off */
+document.getElementById('pitchL').height = sHeight - (sHeight / 2);
+document.getElementById('pitchL').width = sWidth;
+document.getElementById('pitchR').height = sHeight - (sHeight / 2);
+document.getElementById('pitchR').width = sWidth;
 
 /**********************************************************************/
 
@@ -128,22 +135,28 @@ var startTime, endTime, touchTime;
 /*************************** ON OFF - INI *****************************/
 function onOff() {
 
+    window.addEventListener("audiofrequency", onAudiofrequency, false);
+
+    function onAudiofrequency(e) {
+        alert('Entra en onAudiofrequency');
+        //console.log("Frequency: " + e.frequency + " Hz");
+        alert("Frequency: " + e.frequency + " Hz");
+    }
 
     switch(onOFF_v) {
         case '0':
-            onOFF_v = '2';
-            document.getElementById('note').src="img/A.png";
+            onOFF_v = '1';
+            //document.getElementById('note').src="img/A.png";
             document.getElementById('divNote').style.visibility = 'visible';
+            document.getElementById('pitchL').style.visibility = 'visible';
+            document.getElementById('pitchR').style.visibility = 'visible';
             //captureAudio();
             break;
         case '1':
             onOFF_v = '0';
             document.getElementById('divNote').style.visibility = 'hidden';
-            break;
-
-        case '2':
-            onOFF_v = '0';
-            document.getElementById('note').src="img/A1.png";
+            document.getElementById('pitchL').style.visibility = 'hidden';
+            document.getElementById('pitchR').style.visibility = 'hidden';
             break;
 
     }
@@ -182,50 +195,4 @@ document.getElementById('btnExit').addEventListener('touchend',function(event) {
 /*************************** EXIT APP - END ***************************/
 
 
-/***************************************************************************/
-/*************************** CAPTURE AUDIO - INI ***************************/
-/***************************************************************************/
 
-/*
-// Called when capture operation is finished
-//
-function captureSuccess(mediaFiles) {
-    var i, len;
-    for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-        uploadFile(mediaFiles[i]);
-    }
-}
-
-// Called if something bad happens.
-//
-function captureError(error) {
-    var msg = 'An error occurred during capture: ' + error.code;
-    navigator.notification.alert(msg, null, 'Uh oh!');
-}
-
-// A button will call this function
-//
-function captureAudio() {
-    // Launch device audio recording application,
-    // allowing user to capture up to 2 audio clips
-    navigator.device.capture.captureAudio(captureSuccess, captureError, {limit: 2});
-}
-
-// Upload files to server
-function uploadFile(mediaFile) {
-    var ft = new FileTransfer(),
-        path = mediaFile.fullPath,
-        name = mediaFile.name;
-
-    ft.upload(path,
-        "http://my.domain.com/upload.php",
-        function(result) {
-            console.log('Upload success: ' + result.responseCode);
-            console.log(result.bytesSent + ' bytes sent');
-        },
-        function(error) {
-            console.log('Error uploading file ' + path + ': ' + error.code);
-        },
-        { fileName: name });
-}
-*/
