@@ -192,6 +192,8 @@ document.getElementById('btnExit').addEventListener('touchend',function(event) {
     if (touchTime > 350) {
         touchTime = null;
         document.getElementById('note').style.visibility = 'hidden';
+        document.getElementById('pitchR').style.visibility = 'hidden';
+        document.getElementById('pitchL').style.visibility = 'hidden';
         document.getElementById('note').src = 'img/off.png';
         document.getElementById('note').style.visibility = 'visible';
         setInterval('parpadeo()', 500);
