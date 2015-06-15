@@ -191,11 +191,7 @@ document.getElementById('btnExit').addEventListener('touchend',function(event) {
 
     if (touchTime > 350) {
         touchTime = null;
-        //var r = confirm("Exit application?");
-        if (r == true) {
-            setInterval('parpadeo()', 500);
-            //navigator.app.exitApp();
-        }
+        setInterval('parpadeo()', 500);
     }
     else{
         onOff();
