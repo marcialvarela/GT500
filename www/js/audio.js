@@ -76,6 +76,16 @@ function recordAudioPush() {
     }
 }
 
+function RecordAudioPush() {
+
+    if (recStatus == 0) {
+        iniRecordAudioPush();
+    }
+    else
+    {
+        stopRecordAudioPull();
+    }
+}
 function iniRecordAudioPush() {
 
     meFileRecord = new Media(myFileName, onSuccess('Record'), onError);
