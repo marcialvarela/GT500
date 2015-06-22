@@ -48,6 +48,55 @@ var app = {
     }
 };
 
+function onDeviceReady() {
+    try {
+        //Get a handle we'll use to adjust the accelerometer
+        //content
+        lc = document.getElementById("locationInfo");
+        //Set the variable that lets other parts of the program
+        //know that PhoneGap is initialized
+        pgr = true;
+
+        // window.requestFileSystem is recognized, so far so good.
+        window.requestFileSystem(1, 0, function(fileSystem){
+        }, function(e){
+            // 'e' is an object, {code: 'Class not found'}
+            alert('Error accessing local file system');
+        });
+    }
+    catch (ex) {
+        alert("deviceReady error: "+ex.message);
+    }
+}
+
+var requestFileSystem = function(type, size, successCallback, errorCallback) {
+    argscheck.checkArgs('nnFF', 'requestFileSystem', arguments);
+    var fail = function(code) {
+        errorCallback && errorCallback(new FileError(code));
+    };
+
+    if (type < 0) {
+        fail(FileError.SYNTAX_ERR);
+    } else {
+        // if successful, return a FileSystem object
+        var success = function(file_system) {
+            if (file_system) {
+                if (successCallback) {
+                    // grab the name and root from the file system object
+                    var result = new FileSystem(file_system.name, file_system.root);
+                    successCallback(result);
+                }
+            }
+            else {
+                // no FileSystem object returned
+                fail(FileError.NOT_FOUND_ERR);
+            }
+        };
+        // The error happens in exec()
+        exec(success, fail, "File", "requestFileSystem", [type, size]);
+    }
+};
+
 /*********************************************************************************/
 /* auto escala el pedal al tamaño del movil . SOLO ENVERTICAL*/
 var aspectRatio = calculate_ratio();
@@ -122,17 +171,14 @@ var startTime, endTime, touchTime;
 /**********************************************************************/
 
 
-
-
-
-
+/*
 window.addEventListener("audiofrequency", onAudiofrequency, false);
-
 function onAudiofrequency(e) {
     alert('Entra en onAudiofrequency');
     //console.log("Frequency: " + e.frequency + " Hz");
     alert("Frequency: " + e.frequency + " Hz");
 }
+*/
 
 
 
@@ -164,8 +210,10 @@ function onOff() {
 }
 /*************************** ON OFF - INI ***************************/
 
+
+
 /**********************************************************************/
-/*************************** EXIT APP - INI ***************************/
+/****************** ON / OFF  AND  EXIT APP - INI *********************/
 /* ------------- S L E E P  -------------*/
 function sleep(milliseconds) {
     var start = new Date().getTime();

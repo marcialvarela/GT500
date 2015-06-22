@@ -4,14 +4,16 @@
 
 /* Aplicaction : https://github.com/Cellules/cordova-audiofrequency*/
 /* https://github.com/Cellules/cordova-audiofrequency/blob/master/www/audiofrequency.js */
-
+/*http://stackoverflow.com/questions/5511250/capturing-sound-for-analysis-and-visualizing-frequencies-in-android*/
 /*
 Installation
 cordova plugin add com.cellules.cordova.audiofrequency
 */
 
+alert('entra en audiofrequency.js');
 var cordova = require('cordova'),
     exec = require('cordova/exec');
+alert('declara var cordova');
 
 function handlers () {
     return audiofrequency.channels.audiofrequency.numHandlers;
@@ -54,9 +56,13 @@ AudioFrequency.prototype._frequency = function (frequencyData) {
  * Error callback for AudioFrequency start
  */
 AudioFrequency.prototype._error = function (e) {
-    console.log("Error initializing AudioFrequency: " + e);
+    //console.log("Error initializing AudioFrequency: " + e);
+    alert("Error initializing AudioFrequency: " + e);
 };
 
 var audiofrequency = new AudioFrequency();
 
 module.exports = audiofrequency;
+
+
+/**************************************************************************************/
